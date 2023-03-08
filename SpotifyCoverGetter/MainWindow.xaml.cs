@@ -24,5 +24,11 @@ namespace SpotifyCoverGetter
         {
             InitializeComponent();
         }
+
+        private void getCover(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Please, enter a spotify URL.\n\n\nExample : https://open.spotify.com/track/...", "Error", MessageBoxButton.OK, MessageBoxImage.Information);            
+            
+        }
     }
 }
