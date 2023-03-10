@@ -66,6 +66,8 @@ namespace SpotifyCoverGetter
                     Uri imgLink = new Uri(modelJson.thumbnail_url);
                     image_box.Source = new BitmapImage(imgLink);
 
+                    //Add click on the image to save it on the desktop ? or select the file
+
                 }catch(WebException error)
                 {
                     MessageBox.Show("Please, enter a valid spotify url.\n\n\nExample: https://open.spotify.com/track/...", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
