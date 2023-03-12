@@ -9,6 +9,7 @@ namespace SpotifyCoverGetter
         public int width { get; set; }
         public int height { get; set; }
         public string thumbnail_url { get; set; }
+        public string title { get; set; }
         
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpotifyCoverGetter"
         mc:Ignorable="d"
-        Title="SpotifyCoverGetter" Height="450" Width="800">
+        Title="SpotifyCoverGetter" Height="450" Width="800" Icon="/Spotify_logo_without_text.png" WindowStartupLocation="CenterScreen">
     <Grid Background="#aee6c2">
 
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,100" FontSize="24" TextDecorations="Underline">Spotify Cover Getter:</TextBlock>
@@ -16,6 +16,8 @@
 
         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,200,400,0" Name="widthLabel">Width :</Label>
         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,250,400,0" Name="heightLabel">Height :</Label>
-        <Image Name="image_box" Width="150" Height="150" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10"></Image>
+        <Image Name="image_box" Width="150" Height="150" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" MouseUp="SaveImage"></Image>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,300,0,0" >You just need to click on the image for saving !</Label>
+
     </Grid>
 </Window>

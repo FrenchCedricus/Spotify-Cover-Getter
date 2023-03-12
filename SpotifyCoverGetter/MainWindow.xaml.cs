@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -15,7 +14,8 @@ using System.Windows.Shapes;
 using System.Net;
 using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+using Microsoft.Win32;
+using System.Drawing;
 
 namespace SpotifyCoverGetter
 {
@@ -24,6 +24,8 @@ namespace SpotifyCoverGetter
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        Model modelJson;
         public MainWindow()
         {
             InitializeComponent();
@@ -56,7 +58,7 @@ namespace SpotifyCoverGetter
                         readStream.Close();
                     }
                     //Serialize the JSON
-                    Model modelJson = JsonSerializer.Deserialize<Model>(data);
+                    modelJson = JsonSerializer.Deserialize<Model>(data);
 
                     //Manage the Width and Height label
                     widthLabel.Content = "Width : " + modelJson.width;
@@ -68,7 +70,8 @@ namespace SpotifyCoverGetter
 
                     //Add click on the image to save it on the desktop ? or select the file
 
-                }catch(WebException error)
+                }
+                catch (WebException error)
                 {
                     MessageBox.Show("Please, enter a valid spotify url.\n\n\nExample: https://open.spotify.com/track/...", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -78,6 +81,24 @@ namespace SpotifyCoverGetter
                 MessageBox.Show("Please, enter a spotify URL.\n\n\nExample : https://open.spotify.com/track/...", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
-            }
         }
+
+        private void SaveImage(object sender, MouseButtonEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.InitialDirectory = @"Download";
+            sfd.DefaultExt = ".jpg";
+            sfd.Title = "Spotify Cover Getter - " + modelJson.title;
+            sfd.Filter = "jpg|*.jpg |All Files|*.*";
+            sfd.FileName = modelJson.title;
+            sfd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            if (sfd.ShowDialog() == true)
+            {
+                WebClient webClient = new WebClient();
+                webClient.DownloadFile(modelJson.thumbnail_url, sfd.FileName);
+
+            }
+
+        }
+    }
 }
